@@ -1,14 +1,18 @@
 import React from "react";
 import Product from "./Product";
+import { useContext } from "react";
+import { SelectedProductsContext } from "./App";
 
-class ProductList extends React.Component {
-    render() {
+const ProductList = () => {
+    
+        const context = useContext(SelectedProductsContext);
+
         return (
-            this.props.products.map((product,index) => (
-                <Product product={product} key={index} selectProduct={this.props.selectProduct} />
+            context.products.map((product,index) => (
+                <Product product={product} key={index} />
             ))
         );
-    }
+    
 }
 
 export default ProductList;

@@ -1,33 +1,40 @@
 import React from "react";
+import { useContext } from "react";
+import { SelectedProductsContext } from "./App";
 
-class SelectedProductList extends React.Component {
-    render() {
+const SelectedProductList = () => {
+
+    const context = useContext(SelectedProductsContext);
+
+    const deleteProduct = (id) => {
+        context.setSelectedProducts(context.selectedProducts.filter(x => x.id != id));
+    }
         return (
 
             <div>
                 {
-                    (this.props.products.length == 0) ?
+                    (context.products.length == 0) ?
                         <div className="alert alert-warning"> Seçilen ürün yok </div>
                     :
                     <ol className="list-group list-group-numbered">
                     {
-                    this.props.products.map((item, index) => 
+                    context.selectedProducts.map((item, index) => 
                         <li className="list-group-item d-flex justify-content-between align-items-start" key={index}>
                             <div className="ms-2 me-auto">
-                                { item.product.name }
+                                { item.name }
                             </div>
                             <span className="badge bg-primary rounded-pill me-2">{item.count}</span>
-                            <span className="badge bg-danger rounded-pill" onClick={() => this.props.deleteProduct(item.product)}>X</span>
+                            <span className="badge bg-danger rounded-pill" onClick={() => deleteProduct(item.id)}>X</span>
                         </li>
                     )
                     }
-            </ol>
+                    </ol>
                 }
             </div>
 
             
         );
     }
-}
+
 
 export default SelectedProductList;
