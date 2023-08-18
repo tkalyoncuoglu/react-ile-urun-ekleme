@@ -8,9 +8,6 @@ import SelectedProductList from './SelectedProductList';
 const SelectedProductsContext = createContext();
 
 const App = () => {
-
-    
-    
     const [selectedProducts, setSelectedProducts] = useState([]);
 
     const  products = [
@@ -33,17 +30,11 @@ const App = () => {
                     image: "3.jpg"
                 }
             ];
-    
-    
-
-
-   
-
 
         return (
             <SelectedProductsContext.Provider value={{products, selectedProducts, setSelectedProducts}}>
             <div className="container mt-3">
-                <Header selectedProducts={selectedProducts}/>
+                <Header/>
                 <div className="row mt-3">
                     <div className="col-4">
                         <NewProduct/>
@@ -54,10 +45,7 @@ const App = () => {
                     <div className="col-4">
                         <SelectedProductList/>
                     </div>
-                </div>
-                
-                        
-                   
+                </div> 
             </div>
             </SelectedProductsContext.Provider>
         );
